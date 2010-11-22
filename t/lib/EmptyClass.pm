@@ -1,0 +1,2 @@
+package EmptyClass;
+1;

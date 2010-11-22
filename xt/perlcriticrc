@@ -1,0 +1,12 @@
+[TestingAndDebugging::ProhibitNoStrict]
+allow=refs
+
+[TestingAndDebugging::RequireUseStrict]
+equivalent_modules = Shaft Shaft::Role Shaft::Util Shaft::Util::TypeConstraints
+
+[TestingAndDebugging::RequireUseWarnings]
+equivalent_modules = Shaft Shaft::Role Shaft::Util Shaft::Util::TypeConstraints
+
+[-BuiltinFunctions::ProhibitStringyEval]
+
+[-Subroutines::ProhibitSubroutinePrototypes]
