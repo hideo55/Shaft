@@ -209,28 +209,32 @@ Shaft - yet another class builder that using inside-out object technique
 
 =head1 SYNOPSIS
 
-	package Foo;
-	use Shaft;
-	
-	Public name => ( is => 'ro' );
-	Protected foo => ( is =>'rw', default=>'foo' );
-	
-	sub BUILD{
-		my $self = shift;
-		my $args = shift;
-		
-		$self->get_object_reference->{name} = $args->{name};
-	}
-	
-	package Bar;
-	use Shaft extends => qw/Foo/;
-	
-	Private bar => ( is => 'ro' );
-	
-	sub BUILD{
-		my $self;
-		$self->bar( $self->foo );
-	}
+  package Foo;
+  use Shaft;
+
+  Public foo => ( is => 'ro' );
+  Protected bar => ( is => 'ro' );
+  Private baz => ( is => 'rw' );
+
+  sub hoge : Protected {
+      q{HOGE};
+  }
+  __PACKAGE__->meta->make_immutable;
+
+  package Foo::Role;
+  use Shaft::Role;
+
+  require 'hoge';
+
+  package Qux;
+  use Shaft -extends => 'Foo';
+
+  with 'Foo::Role';
+
+  sub quxx {
+      print shift->hoge;
+  }
+  __PACKAGE__->meta->make_immutable;
 
 =head1 DESCRIPTION
 
