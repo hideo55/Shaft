@@ -224,7 +224,7 @@ Shaft - yet another class builder that using inside-out object technique
   package Foo::Role;
   use Shaft::Role;
 
-  require 'hoge';
+  requires 'hoge';
 
   package Qux;
   use Shaft -extends => 'Foo';
